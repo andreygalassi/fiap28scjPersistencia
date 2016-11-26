@@ -10,7 +10,7 @@ public abstract class Dao {
 	//usada para manter a conexão com o banco de dados
 	protected Connection cn;
 	//usado para realizar operaçãoes no banco de dados
-	protected PreparedStatement stm;
+	protected PreparedStatement stmt;
 	//usado para referenciar consultas
 	protected ResultSet rs;
 	//string de conexao
