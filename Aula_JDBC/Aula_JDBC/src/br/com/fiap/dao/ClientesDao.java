@@ -39,6 +39,7 @@ public class ClientesDao extends Dao {
 				cliente.setId(id);
 				cliente.setNome(rs.getString("nome"));
 				cliente.setEmail(rs.getString("email"));
+				cliente.setPedidos(new PedidosDao().listarPedidos(cliente.getId()));
 			}
 		} catch (Exception e) {
 			throw e;
@@ -59,6 +60,7 @@ public class ClientesDao extends Dao {
 				cliente.setId(rs.getInt("id"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setEmail(rs.getString("email"));
+				cliente.setPedidos(new PedidosDao().listarPedidos(cliente.getId()));
 				lista.add(cliente);
 			}
 		} catch (Exception e) {

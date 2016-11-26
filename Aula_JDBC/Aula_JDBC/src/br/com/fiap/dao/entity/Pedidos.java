@@ -42,6 +42,11 @@ public class Pedidos {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	@Override
+	public String toString() {
+		return String.format("Pedidos [id=%s, idCliente=%s, data=%s, descricao=%s, valor=%s]", id, idCliente, data,
+				descricao, valor);
+	}
 	
 	
 }

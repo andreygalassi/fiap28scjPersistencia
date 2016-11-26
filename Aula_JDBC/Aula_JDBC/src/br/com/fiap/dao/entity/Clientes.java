@@ -39,6 +39,9 @@ public class Clientes implements Serializable {
 	}
 	@Override
 	public String toString() {
+		return String.format("%s - %s", id, nome, email, pedidos);
+	}
+	public String mostraAtributos() {
 		return String.format("Clientes [id=%s, nome=%s, email=%s, pedidos=%s]", id, nome, email, pedidos);
 	}
 	

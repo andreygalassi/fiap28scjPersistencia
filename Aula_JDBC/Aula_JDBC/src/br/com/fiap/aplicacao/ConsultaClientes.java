@@ -45,7 +45,7 @@ public class ConsultaClientes {
 				e.printStackTrace();
 			} 
 			System.out.println("-------------");
-			int opcao = showConfirmDialog(null, "Deseja continuar incluindo clientes?"
+			int opcao = showConfirmDialog(null, "Deseja continuar?"
 					,"Confirmação",JOptionPane.YES_NO_OPTION);
 			if (opcao != JOptionPane.YES_OPTION) break;
 		}
@@ -63,6 +63,6 @@ public class ConsultaClientes {
 
 	private static void listar() throws Exception {
 		List<Clientes> clientes = new ClientesDao().listarClientes();
-		clientes.forEach(c->System.out.println(c));
+		clientes.forEach(c->System.out.println(c.mostraAtributos()));
 	}
 }
