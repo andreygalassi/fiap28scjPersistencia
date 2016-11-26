@@ -10,7 +10,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
 /Aula_JDBC/Aula_JDBC/.settings
 /Aula_JDBC/Aula_JDBC/.classpath
-/Aula_JDBC/Aula_JDBC/.gitignore
 /Aula_JDBC/Aula_JDBC/.project
