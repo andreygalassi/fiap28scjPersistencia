@@ -37,6 +37,10 @@ public class Clientes implements Serializable {
 	public void setPedidos(List<Pedidos> pedidos) {
 		this.pedidos = pedidos;
 	}
+	@Override
+	public String toString() {
+		return String.format("Clientes [id=%s, nome=%s, email=%s, pedidos=%s]", id, nome, email, pedidos);
+	}
 	
 	
 }
