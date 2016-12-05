@@ -43,7 +43,7 @@ public class Paciente implements Serializable {
 	@Column(name="TELEFONE", length=20)
 	private String tel;
 
-	@ManyToMany(fetch=FetchType.LAZY, mappedBy="pacientes")
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy="pacientes", cascade= CascadeType.ALL)
 	private Set<Agenda> agendas = new HashSet<>();
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="paciente")
