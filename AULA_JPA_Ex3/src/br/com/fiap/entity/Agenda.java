@@ -48,6 +48,15 @@ public class Agenda implements Serializable {
 	)
 	private Set<Paciente> pacientes = new HashSet<>();
 
+	public void addPaciente(Paciente paciante){
+		pacientes.add(paciante);
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Agenda [id=%s, data=%s, hora=%s, descricao=%s]", id, data, hora, descricao);
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -37,6 +37,24 @@ public class MatMed implements Serializable {
 	@JoinColumn(name="CPFPAC")
 	private Paciente paciente;
 
+	@Deprecated
+	public MatMed(){
+		super();
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("MatMed [id=%s, descricao=%s, preco=%s, fabricante=%s]", id, descricao, preco, fabricante);
+	}
+
+	public MatMed(String descricao, Double preco, String fabricante, Paciente paciente) {
+		super();
+		this.descricao = descricao;
+		this.preco = preco;
+		this.fabricante = fabricante;
+		this.paciente = paciente;
+	}
+
 	public Integer getId() {
 		return id;
 	}

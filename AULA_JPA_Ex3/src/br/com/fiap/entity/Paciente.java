@@ -1,6 +1,8 @@
 package br.com.fiap.entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,6 +51,45 @@ public class Paciente implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="paciente")
 	private Set<MatMed> matMeds = new HashSet<>();
+	
+	/**
+	 * Construtor publico para ser usado pelo framwork, mas não deve ser usado pelo desenvolvedor
+	 */
+	@Deprecated 
+	public Paciente(){
+		super();
+	}
+	
+	public Paciente(String cpf, String nome, String dtNacimento) {
+		super();
+		this.cpf = cpf.replace(".", "").replace("-","");
+		this.nome = nome;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			this.dtNacimento = sdf.parse(dtNacimento);
+		} catch (ParseException e) {
+			System.out.println("Houve um erro ao converter a data de nascimento");
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(
+				"Paciente [cpf=%s, nome=%s, dtNacimento=%s, tel=%s, agendas=%s, procedimentos=%s, matMeds=%s]", cpf,
+				nome, dtNacimento, tel, agendas, procedimentos, matMeds);
+	}
+
+	public void addAgenda(Agenda agenda){
+		agendas.add(agenda);
+	}
+	
+	public void addProcedimento(Procedimento procedimento){
+		procedimentos.add(procedimento);
+	}
+	
+	public void addMatMed(MatMed matMed){
+		matMeds.add(matMed);
+	}
 
 	public String getCpf() {
 		return cpf;

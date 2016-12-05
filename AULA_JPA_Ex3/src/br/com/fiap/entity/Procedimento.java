@@ -16,6 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="procedimento")
 public class Procedimento implements Serializable {
+	@Override
+	public String toString() {
+		return String.format("Procedimento [id=%s, descricao=%s, preco=%s]", id, descricao, preco);
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -32,6 +37,18 @@ public class Procedimento implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL)
 	@JoinColumn(name="CPFPAC")
 	private Paciente paciente;
+
+	@Deprecated
+	public Procedimento(){
+		super();
+	}
+	
+	public Procedimento(String descricao, Double preco, Paciente paciente) {
+		super();
+		this.descricao = descricao;
+		this.preco = preco;
+		this.paciente = paciente;
+	}
 
 	public Integer getId() {
 		return id;
