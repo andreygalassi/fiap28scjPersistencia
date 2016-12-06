@@ -1,8 +1,5 @@
 package br.com.fiap.Programa;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -60,8 +57,8 @@ public class EquipeMain {
 	}
 
 	private static void incluir() {
-//		EntityManagerFactory emf = Persistence.createEntityManagerFactory(ChamadoHelper.DS);
-//		EntityManager em = emf.createEntityManager();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA_31680_31489");
+		EntityManager em = emf.createEntityManager();
 		
 		Equipe equipe = new Equipe();
 		
@@ -71,20 +68,27 @@ public class EquipeMain {
 		
 		String descricaoChamado="";
 		while (true) {
-			descricaoChamado = JOptionPane.showInputDialog("Digite a descrição do chamado \nou nada para sair");
-			if (descricaoChamado.length()==0) break;
+			descricaoChamado = JOptionPane.showInputDialog("Digite a descrição do chamado");
+			if (descricaoChamado==null) break;
 			Chamado chamado = new Chamado(descricaoChamado);
 			chamado.setEquipe(equipe);
 			String descricaoItem="";
 			while (true) {
-				descricaoItem = JOptionPane.showInputDialog("Digite a descrição do item do chamado \nou nada para sair");
-				if (descricaoItem.length()==0) break;
+				descricaoItem = JOptionPane.showInputDialog("Digite a descrição do item do chamado");
+				if (descricaoItem==null) break;
 				Itens item = new Itens(descricaoItem,chamado);
 				chamado.addItem(item);
 			}
 			equipe.addChamado(chamado);
 		}
-
+		ChamadoHelper helper = new ChamadoHelper(em);
+		try {
+			helper.salvar(equipe);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			em.close();
+		}
 		System.out.println(equipe);
 	}
 }
