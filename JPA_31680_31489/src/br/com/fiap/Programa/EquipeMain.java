@@ -1,11 +1,16 @@
 package br.com.fiap.Programa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
+import br.com.fiap.entity.Chamado;
 import br.com.fiap.entity.Equipe;
+import br.com.fiap.entity.Itens;
 import br.com.fiap.helper.ChamadoHelper;
 
 public class EquipeMain {
@@ -64,8 +69,22 @@ public class EquipeMain {
 		
 		equipe.setResponsavel(responsavel);
 		
-		
-		
-		
+		String descricaoChamado="";
+		while (true) {
+			descricaoChamado = JOptionPane.showInputDialog("Digite a descrição do chamado \nou nada para sair");
+			if (descricaoChamado.length()==0) break;
+			Chamado chamado = new Chamado(descricaoChamado);
+			chamado.setEquipe(equipe);
+			String descricaoItem="";
+			while (true) {
+				descricaoItem = JOptionPane.showInputDialog("Digite a descrição do item do chamado \nou nada para sair");
+				if (descricaoItem.length()==0) break;
+				Itens item = new Itens(descricaoItem,chamado);
+				chamado.addItem(item);
+			}
+			equipe.addChamado(chamado);
+		}
+
+		System.out.println(equipe);
 	}
 }

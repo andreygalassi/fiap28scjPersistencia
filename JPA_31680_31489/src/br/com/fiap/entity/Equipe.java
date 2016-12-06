@@ -1,7 +1,8 @@
 package br.com.fiap.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class Equipe implements Serializable {
 	private String responsavel;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="equipe" )
-	private Set<Chamado> chamados = new HashSet<>();
+	private List<Chamado> chamados = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -40,14 +41,18 @@ public class Equipe implements Serializable {
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
-	public Set<Chamado> getChamados() {
+	public List<Chamado> getChamados() {
 		return chamados;
 	}
-	public void setChamados(Set<Chamado> chamados) {
+	public void setChamados(List<Chamado> chamados) {
 		this.chamados = chamados;
 	}
 	@Override
 	public String toString() {
 		return String.format("Equipe [id=%s, responsavel=%s, chamados=%s]", id, responsavel, chamados);
+	}
+	public void addChamado(Chamado chamado) {
+		if (chamados==null) chamados = new ArrayList<>();
+		chamados.add(chamado);
 	}
 }

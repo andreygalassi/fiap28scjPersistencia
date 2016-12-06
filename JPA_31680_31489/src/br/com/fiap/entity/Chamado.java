@@ -1,8 +1,9 @@
 package br.com.fiap.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ public class Chamado implements Serializable {
 	private String descricao;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="chamado" )
-	private Set<Itens> itens = new HashSet<>();;
+	private List<Itens> itens = new ArrayList<>();;
 	
 	@Temporal(value=TemporalType.DATE)
 	@Column(name="DT_SOLICITACAO")
@@ -41,12 +42,18 @@ public class Chamado implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="STATUS")
-	private EnumStatus status;
+	private EnumStatus status = EnumStatus.ABERTO;
 
 	@ManyToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL)
 	@JoinColumn(name="ID_EQUIPE")
 	private Equipe equipe;
 	
+	public Chamado(){
+		super();
+	}
+	public Chamado(String descricao) {
+		this.descricao = descricao;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -59,10 +66,10 @@ public class Chamado implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Set<Itens> getItens() {
+	public List<Itens> getItens() {
 		return itens;
 	}
-	public void setItens(Set<Itens> itens) {
+	public void setItens(List<Itens> itens) {
 		this.itens = itens;
 	}
 	public Date getDtSolicitacao() {
@@ -87,6 +94,10 @@ public class Chamado implements Serializable {
 	public String toString() {
 		return String.format("Chamado [id=%s, descricao=%s, itens=%s, dtSolicitacao=%s, status=%s]",
 				id, descricao, itens, dtSolicitacao, status);
+	}
+	public void addItem(Itens item) {
+		if (itens==null) itens = new ArrayList<>();
+		itens.add(item);
 	}
 	
 }

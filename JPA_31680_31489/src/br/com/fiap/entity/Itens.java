@@ -28,6 +28,14 @@ public class Itens implements Serializable {
 	@JoinColumn(name="ID_CHAMADO")
 	private Chamado chamado;
 	
+	public Itens() {
+		super();
+	}
+	
+	public Itens(String descricao, Chamado chamado) {
+		this.descricao=descricao;
+		this.chamado=chamado;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -45,6 +53,11 @@ public class Itens implements Serializable {
 	}
 	public void setChamado(Chamado chamado) {
 		this.chamado = chamado;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Itens [id=%s, descricao=%s, chamado=%s]", id, descricao, chamado);
 	}
 	
 	
