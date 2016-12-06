@@ -24,9 +24,6 @@ public class Equipe implements Serializable {
 	@Column(name="RESPONSAVEL")
 	private String responsavel;
 
-	@Column(name="NOME")
-	private String nome;
-
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="equipe" )
 	private Set<Chamado> chamados;
 	
@@ -42,12 +39,6 @@ public class Equipe implements Serializable {
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	public Set<Chamado> getChamados() {
 		return chamados;
 	}
@@ -56,6 +47,6 @@ public class Equipe implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return String.format("Equipe [id=%s, responsavel=%s, nome=%s, chamados=%s]", id, responsavel, nome, chamados);
+		return String.format("Equipe [id=%s, responsavel=%s, chamados=%s]", id, responsavel, chamados);
 	}
 }

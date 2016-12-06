@@ -36,11 +36,7 @@ public class Chamado implements Serializable {
 	
 	@Temporal(value=TemporalType.DATE)
 	@Column(name="DT_SOLICITACAO")
-	private Date dtSolicitacao;
-
-	@Temporal(value=TemporalType.DATE)
-	@Column(name="DT_CONCLUSAO")
-	private Date dtConclussao;
+	private Date dtSolicitacao = new Date();
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="STATUS")
@@ -74,12 +70,6 @@ public class Chamado implements Serializable {
 	public void setDtSolicitacao(Date dtSolicitacao) {
 		this.dtSolicitacao = dtSolicitacao;
 	}
-	public Date getDtConclussao() {
-		return dtConclussao;
-	}
-	public void setDtConclussao(Date dtConclussao) {
-		this.dtConclussao = dtConclussao;
-	}
 	public EnumStatus getStatus() {
 		return status;
 	}
@@ -94,8 +84,8 @@ public class Chamado implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return String.format("Chamado [id=%s, descricao=%s, itens=%s, dtSolicitacao=%s, dtConclussao=%s, status=%s]",
-				id, descricao, itens, dtSolicitacao, dtConclussao, status);
+		return String.format("Chamado [id=%s, descricao=%s, itens=%s, dtSolicitacao=%s, status=%s]",
+				id, descricao, itens, dtSolicitacao, status);
 	}
 	
 }
