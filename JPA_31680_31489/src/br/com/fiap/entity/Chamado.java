@@ -92,5 +92,10 @@ public class Chamado implements Serializable {
 	public void setEquipe(Equipe equipe) {
 		this.equipe = equipe;
 	}
+	@Override
+	public String toString() {
+		return String.format("Chamado [id=%s, descricao=%s, itens=%s, dtSolicitacao=%s, dtConclussao=%s, status=%s]",
+				id, descricao, itens, dtSolicitacao, dtConclussao, status);
+	}
 	
 }

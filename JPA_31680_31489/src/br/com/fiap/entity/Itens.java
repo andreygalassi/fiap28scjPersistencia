@@ -46,6 +46,10 @@ public class Itens implements Serializable {
 	public void setChamado(Chamado chamado) {
 		this.chamado = chamado;
 	}
+	@Override
+	public String toString() {
+		return String.format("Itens [id=%s, descricao=%s]", id, descricao);
+	}
 	
 	
 }

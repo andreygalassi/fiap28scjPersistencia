@@ -54,4 +54,8 @@ public class Equipe implements Serializable {
 	public void setChamados(Set<Chamado> chamados) {
 		this.chamados = chamados;
 	}
+	@Override
+	public String toString() {
+		return String.format("Equipe [id=%s, responsavel=%s, nome=%s, chamados=%s]", id, responsavel, nome, chamados);
+	}
 }
