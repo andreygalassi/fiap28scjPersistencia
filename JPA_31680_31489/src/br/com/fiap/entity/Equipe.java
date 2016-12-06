@@ -3,11 +3,14 @@ package br.com.fiap.entity;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Equipe implements Serializable {
@@ -17,8 +20,14 @@ public class Equipe implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID", unique=true, nullable=false)
 	private Long id;
+
+	@Column(name="RESPONSAVEL")
 	private String responsavel;
+
+	@Column(name="NOME")
 	private String nome;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="equipe" )
 	private Set<Chamado> chamados;
 	
 	public Long getId() {

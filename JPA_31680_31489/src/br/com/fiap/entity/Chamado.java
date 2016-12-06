@@ -4,11 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Chamado implements Serializable {
@@ -18,11 +27,27 @@ public class Chamado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID", unique=true, nullable=false)
 	private Long id;
+	
+	@Column(name="DESCRICAO")
 	private String descricao;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="chamado" )
 	private Set<Itens> itens;
+	
+	@Temporal(value=TemporalType.DATE)
+	@Column(name="DT_SOLICITACAO")
 	private Date dtSolicitacao;
+
+	@Temporal(value=TemporalType.DATE)
+	@Column(name="DT_CONCLUSAO")
 	private Date dtConclussao;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="STATUS")
 	private EnumStatus status;
+
+	@ManyToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL)
+	@JoinColumn(name="ID_EQUIPE")
 	private Equipe equipe;
 	
 	public Long getId() {
