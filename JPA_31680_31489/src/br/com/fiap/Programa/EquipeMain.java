@@ -1,13 +1,9 @@
 package br.com.fiap.Programa;
 
-import java.text.ParseException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
-
-import org.hibernate.id.uuid.Helper;
 
 import br.com.fiap.entity.Equipe;
 import br.com.fiap.helper.ChamadoHelper;

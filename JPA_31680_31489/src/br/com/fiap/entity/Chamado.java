@@ -2,6 +2,7 @@ package br.com.fiap.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -32,7 +33,7 @@ public class Chamado implements Serializable {
 	private String descricao;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="chamado" )
-	private Set<Itens> itens;
+	private Set<Itens> itens = new HashSet<>();;
 	
 	@Temporal(value=TemporalType.DATE)
 	@Column(name="DT_SOLICITACAO")

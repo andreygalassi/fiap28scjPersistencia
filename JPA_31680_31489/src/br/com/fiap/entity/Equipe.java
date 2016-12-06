@@ -1,6 +1,7 @@
 package br.com.fiap.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,7 @@ public class Equipe implements Serializable {
 	private String responsavel;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="equipe" )
-	private Set<Chamado> chamados;
+	private Set<Chamado> chamados = new HashSet<>();
 	
 	public Long getId() {
 		return id;
